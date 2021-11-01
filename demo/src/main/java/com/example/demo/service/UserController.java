@@ -2,29 +2,30 @@ package com.example.demo.service;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@Service
 public class UserController {
 
+    private final UserRepository userRepository;
+
+    @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    // standard constructors
-
-    private final UserRepository userRepository;
-
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
-    @PostMapping("/users")
-    void addUser(@RequestBody User user) {
-        userRepository.save(user);
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteUserById(id);
+    }
+
 }
