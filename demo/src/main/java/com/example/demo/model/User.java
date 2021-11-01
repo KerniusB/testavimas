@@ -1,14 +1,18 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table (name = "shop")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String email;
 
     // standard constructors / setters / getters / toString
