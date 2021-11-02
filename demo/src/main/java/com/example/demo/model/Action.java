@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,7 +19,7 @@ public class Action implements Serializable {
     private String date;
     private long amount;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "cashRegisterId")
     private CashRegister cashRegister;
 
@@ -66,6 +68,7 @@ public class Action implements Serializable {
         this.amount = amount;
     }
 
+    @JsonBackReference
     public CashRegister getCashRegister() {
         return cashRegister;
     }

@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CashRegisterRepository extends JpaRepository<CashRegister, Long> {
-
-    void deleteCashRegisterById(Long id);
 }

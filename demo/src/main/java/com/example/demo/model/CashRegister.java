@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,17 +18,17 @@ public class CashRegister implements Serializable {
 
     @OneToMany(mappedBy = "cashRegister", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Action> action;
+    private List<Action> actions;
 
     // standard constructors / setters / getters / toString
 
     public CashRegister() {
     }
 
-    public CashRegister(long id, String shopName, List<Action> action) {
+    public CashRegister(long id, String shopName, List<Action> actions) {
         this.id = id;
         this.shopName = shopName;
-        this.action = action;
+        this.actions = actions;
     }
 
     public long getId() {
@@ -46,12 +47,13 @@ public class CashRegister implements Serializable {
         this.shopName = shopName;
     }
 
-    public List<Action> getAction() {
-        return action;
+    @JsonManagedReference
+    public List<Action> getActions() {
+        return actions;
     }
 
-    public void setAction(List<Action> action) {
-        this.action = action;
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class CashRegister implements Serializable {
         return "CashRegister{" +
                 "id=" + id +
                 ", shopName='" + shopName + '\'' +
-                ", actions=" + action +
+                ", actions=" + actions +
                 '}';
     }
 }
