@@ -26,7 +26,7 @@ public class CashRegisterController {
     }
 
     public void deleteCashRegister(Long id) {
-        cashRegisterRepository.deleteCashRegisterById(id);
+        cashRegisterRepository.deleteById(id);
     }
 
     public List<CashRegister> findAllCashRegister() {

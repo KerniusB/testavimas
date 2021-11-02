@@ -28,7 +28,7 @@ public class ActionController {
     }
 
     public void deleteAction(Long id) {
-        actionRepository.deleteActionById(id);
+        actionRepository.deleteById(id);
     }
 
     public List<Action> findAllAction() {
