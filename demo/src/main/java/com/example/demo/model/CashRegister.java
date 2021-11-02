@@ -12,14 +12,12 @@ import java.util.List;
 public class CashRegister implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
     private long id;
-    @Column(nullable = false)
     private String shopName;
 
-    @OneToMany(mappedBy = "CashRegister", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cashRegister", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    protected List<Action> action;
+    private List<Action> action;
 
     // standard constructors / setters / getters / toString
 

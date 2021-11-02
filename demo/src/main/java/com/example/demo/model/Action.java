@@ -12,13 +12,9 @@ import java.util.List;
 public class Action implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
     private long id;
-    @Column(nullable = false)
     private long inOut;
-    @Column(nullable = false)
     private String date;
-    @Column(nullable = false)
     private long amount;
 
     @ManyToOne()
