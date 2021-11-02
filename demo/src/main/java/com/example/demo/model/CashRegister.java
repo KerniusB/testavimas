@@ -1,7 +1,11 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table (name = "CashRegister")
@@ -13,13 +17,19 @@ public class CashRegister implements Serializable {
     @Column(nullable = false)
     private String shopName;
 
+    @OneToMany(mappedBy = "CashRegister", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    protected List<Action> action;
+
     // standard constructors / setters / getters / toString
 
     public CashRegister() {
     }
 
-    public CashRegister(String shopName) {
+    public CashRegister(long id, String shopName, List<Action> action) {
+        this.id = id;
         this.shopName = shopName;
+        this.action = action;
     }
 
     public long getId() {
@@ -38,11 +48,20 @@ public class CashRegister implements Serializable {
         this.shopName = shopName;
     }
 
+    public List<Action> getAction() {
+        return action;
+    }
+
+    public void setAction(List<Action> action) {
+        this.action = action;
+    }
+
     @Override
     public String toString() {
         return "CashRegister{" +
                 "id=" + id +
-                ", name='" + shopName + '\'' +
+                ", shopName='" + shopName + '\'' +
+                ", actions=" + action +
                 '}';
     }
 }

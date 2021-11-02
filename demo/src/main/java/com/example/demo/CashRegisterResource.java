@@ -25,8 +25,8 @@ public class CashRegisterResource {
 
     @PutMapping("/update")
     public ResponseEntity<CashRegister> updateCashRegister(@RequestBody CashRegister cashRegister) {
-        CashRegister updateCashRegister = cashRegisterController.updateCashRegister(cashRegister);
-        return new ResponseEntity<>(updateCashRegister, HttpStatus.OK);
+        CashRegister updateAction = cashRegisterController.updateCashRegister(cashRegister);
+        return new ResponseEntity<>(updateAction, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
