@@ -1,15 +1,22 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table (name = "CashRegister")
@@ -26,47 +33,9 @@ public class CashRegister implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Action> actions;
 
-    // standard constructors / setters / getters / toString
-
-    public CashRegister() {
-    }
-
-    public CashRegister(long id, String shopName, List<Action> actions) {
+    public CashRegister(long id, String shopName) {
         this.id = id;
         this.shopName = shopName;
         this.actions = actions;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getShopName() {
-        return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
-    public List<Action> getActions() {
-        return actions;
-    }
-
-    public void setActions(List<Action> actions) {
-        this.actions = actions;
-    }
-
-    @Override
-    public String toString() {
-        return "CashRegister{" +
-                "id=" + id +
-                ", shopName='" + shopName + '\'' +
-                ", actions=" + actions +
-                '}';
     }
 }
