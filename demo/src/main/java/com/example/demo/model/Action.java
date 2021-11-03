@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,6 +13,9 @@ import java.util.List;
 
 @Entity
 @Table (name = "Action")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Action implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +24,7 @@ public class Action implements Serializable {
     private String date;
     private long amount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cashRegisterId")
     private CashRegister cashRegister;
 
@@ -68,7 +73,6 @@ public class Action implements Serializable {
         this.amount = amount;
     }
 
-    @JsonBackReference
     public CashRegister getCashRegister() {
         return cashRegister;
     }

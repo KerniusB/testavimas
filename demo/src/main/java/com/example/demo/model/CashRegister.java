@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,6 +13,9 @@ import java.util.List;
 
 @Entity
 @Table (name = "CashRegister")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class CashRegister implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +53,6 @@ public class CashRegister implements Serializable {
         this.shopName = shopName;
     }
 
-    @JsonManagedReference
     public List<Action> getActions() {
         return actions;
     }
