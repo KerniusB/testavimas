@@ -7,30 +7,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CashRegisterController {
+public class CashRegisterService {
 
     private final CashRegisterRepository cashRegisterRepository;
 
-    public CashRegisterController(CashRegisterRepository cashRegisterRepository) {
+    public CashRegisterService(CashRegisterRepository cashRegisterRepository) {
         this.cashRegisterRepository = cashRegisterRepository;
     }
 
 
-    public CashRegister addCashRegister(CashRegister cashRegister) {
+    public CashRegister add(CashRegister cashRegister) {
         return cashRegisterRepository.save(cashRegister);
     }
 
 
-    public CashRegister updateCashRegister(CashRegister cashRegister) {
+    public CashRegister update(CashRegister cashRegister) {
         return cashRegisterRepository.save(cashRegister);
     }
 
-    public void deleteCashRegister(Long id) {
+    public void deleteById(Long id) {
         cashRegisterRepository.deleteById(id);
     }
 
-    public List<CashRegister> findAllCashRegister() {
+    public List<CashRegister> findAll() {
         return cashRegisterRepository.findAll();
     }
 
+
+    public CashRegister findById(Long id) {
+        return cashRegisterRepository.findById(id).orElse(null);
+    }
 }
